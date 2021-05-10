@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1, shrink-to-fit=no"
+    />
+    <meta name="HandheldFriendly" content="true" />
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/png" />
+    <title>Carrito de Compras</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="preload"
+      href="./index.css"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header id="header" class="header">
+      <div class="header-logo-container">
+        <div class="header-logo-wrapper">
+          <img
+            loading="lazy"
+            class="header-logo"
+            src="./assets/logo.png"
+            alt="logo"
+          />
+        </div>
+        <div class="header-logo-text-wrapper">
+          <h1 class="header-logo-text">VideoMarket</h1>
+        </div>
+      </div>
+
+      <div class="header-icon-cart-container" data-btn-open-cart>
+        <div class="header-icon-cart-wrapper">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="31"
+            height="28"
+            viewBox="0 0 31 28"
+          >
+            <path
+              d="M.727.781c-.366-.012-.68.254-.723.611-.041.357.201.687.56.759l2.634.569.677 3.165.001.007 3.358 14.94c.072.318.358.544.688.544h19.016c.188.002.37-.07.505-.199.133-.131.209-.308.209-.494 0-.185-.076-.363-.21-.493s-.316-.202-.504-.199H8.488l-.647-2.884h20.057l-.001-.001c.33 0 .616-.226.688-.543l2.399-10.67V5.89c.045-.204-.006-.42-.14-.583-.133-.164-.335-.258-.549-.258-8.387 0-16.772 0-25.16-.004l-.652-3.05c-.056-.267-.268-.475-.538-.534L.867.8C.82.788.773.78.727.779v.002zm4.713 5.65c7.992.005 15.985.005 23.977.005l-2.087 9.286H7.527L5.44 6.432zm6.989 16.407c-1.38 0-2.509 1.115-2.509 2.47 0 1.355 1.131 2.47 2.509 2.47 1.379 0 2.508-1.115 2.508-2.47 0-1.355-1.13-2.47-2.508-2.47zm10.106 0c-1.38 0-2.509 1.115-2.509 2.47 0 1.355 1.131 2.47 2.509 2.47 1.379 0 2.508-1.115 2.508-2.47 0-1.355-1.13-2.47-2.508-2.47zm-10.106 1.384c.615 0 1.1.478 1.1 1.086 0 .61-.487 1.086-1.1 1.086-.615 0-1.1-.478-1.1-1.086 0-.61.486-1.086 1.1-1.086zm10.106 0c.615 0 1.1.478 1.1 1.086 0 .61-.487 1.086-1.1 1.086-.615 0-1.1-.478-1.1-1.086 0-.61.486-1.086 1.1-1.086z"
+            />
+          </svg>
+        </div>
+        <div id="cart_count" class="header-icon-cart-count">
+          <span class="header-icon-cart-count-number">0</span>
+        </div>
+      </div>
+    </header>
+
+    <aside id="cart" class="cart">
+      <div class="cart-mask" data-btn-close-cart></div>
+
+      <div class="cart-container">
+        <div class="cart-header">
+          <h2 class="cart-header-title">Carrito</h2>
+
+          <div class="cart-header-btn-close" data-btn-close-cart>
+            <img
+              loading="lazy"
+              src="./assets/icon-close-minicart.svg"
+              alt="icon-close"
+            />
+          </div>
+        </div>
+
+        <div
+          id="cart-products"
+          class="cart-products"
+          data-total-products=""
+        ></div>
+
+        <div id="cart-checkout" class="cart-checkout">
+          <div class="cart-checkout-content">
+            <div class="cart-checkout-subtotal">
+              <p class="cart-checkout-subtotal-text">Subtotal</p>
+              <p class="cart-checkout-subtotal-price">Free</p>
+            </div>
+
+            <div class="cart-checkout-button-wrapper">
+              <a class="btn-primary cart-checkout-button" href="/"
+                >Go to checkout</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <!-- / Header -->
+
+    <!-- Grid Movies -->
+    <div class="main-content">
+      <div id="movies-search" class="movies-search">
+        <div class="movies-search-header">
+          <h2 class="movies-search-header-title">
+            Peliculas y Series en tus manos
+          </h2>
+          <p class="movies-search-header-text">
+            Busca en nuestro catálogo informacion sobre tus series y peliculas
+            favoritas!
+          </p>
+          <p class="movies-search-header-text">
+            Agregalas a tu carrito para poder obtenerlas!
+          </p>
+        </div>
+        <form class="searchbar-form">
+          <input
+            id="searchbar-input"
+            type="text"
+            placeholder="Iron Man..."
+            name="q"
+            value=""
+            class="searchbar-input"
+            autocomplete="off"
+          />
+          <button class="searchbar-button" type="submit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              viewBox="0 0 25 25"
+            >
+              <path
+                fill="#FFF"
+                d="M24.797 23.815c.27.27.27.71 0 .982-.272.27-.711.27-.982 0l-7.48-7.48c-.135-.135-.368-.146-.515-.027 0 0-.114.098-.315.247-1.614 1.2-3.616 1.907-5.783 1.907C4.354 19.444 0 15.09 0 9.722 0 4.354 4.354 0 9.722 0c5.368 0 9.722 4.354 9.722 9.722 0 2.119-.678 4.077-1.825 5.672-.174.242-.329.423-.329.423-.122.15-.11.38.027.519l7.48 7.479zm-15.075-5.76c4.604 0 8.334-3.73 8.334-8.333S14.326 1.39 9.722 1.39C5.12 1.39 1.39 5.12 1.39 9.722c0 4.604 3.73 8.334 8.333 8.334z"
+              />
+            </svg>
+          </button>
+        </form>
+      </div>
+      <div id="message-error" class="message-error-container"></div>
+      <div id="movies-grid" class="movies-grid"></div>
+    </div>
+    <!-- / Grid Movies -->
+
+    <!-- Templates Skeletons -->
+    <template id="template-movie-card">
+      <div class="movie-card">
+        <div class="movie-card-image-wrapper">
+          <img loading="lazy" class="movie-card-image" src="" alt="" />
+        </div>
+
+        <div class="movie-card-info">
+          <h2 class="movie-card-info-title"></h2>
+
+          <p class="movie-card-info-year"></p>
+
+          <p class="movie-card-info-type"></p>
+
+          <div class="movie-card-info-btn-wrapper">
+            <button
+              class="btn-primary movie-card-info-btn"
+              type="button"
+              data-btn-add-to-cart
+            >
+              <span>Agregar a carrito</span>
+              <div class="icon-added">
+                <svg
+                  version="1.1"
+                  id="Capa_1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  x="0px"
+                  y="0px"
+                  width="45.701px"
+                  height="45.7px"
+                  viewBox="0 0 45.701 45.7"
+                  style="enable-background: new 0 0 45.701 45.7"
+                  xml:space="preserve"
+                >
+                  <path
+                    d="M20.687,38.332c-2.072,2.072-5.434,2.072-7.505,0L1.554,26.704c-2.072-2.071-2.072-5.433,0-7.504 c2.071-2.072,5.433-2.072,7.505,0l6.928,6.927c0.523,0.522,1.372,0.522,1.896,0L36.642,7.368c2.071-2.072,5.433-2.072,7.505,0 c0.995,0.995,1.554,2.345,1.554,3.752c0,1.407-0.559,2.757-1.554,3.752L20.687,38.332z"
+                  />
+                </svg>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="template-movie-pop-up">
+      <div class="movie-pop-up-card">
+        <div class="mask"></div>
+
+        <div class="super-content">
+          <div class="content">
+            <div class="movie-pop-up">
+              <div class="movie-pop-up-background-image-wrapper">
+                <img
+                  loading="lazy"
+                  class="movie-pop-up-background-image"
+                  src=""
+                  alt="image"
+                />
+              </div>
+
+              <div class="movie-pop-up-info">
+                <div class="movie-pop-up-info-image-wrapper">
+                  <img
+                    loading="lazy"
+                    class="movie-pop-up-info-image"
+                    src=""
+                    alt="image"
+                  />
+                </div>
+
+                <div class="movie-pop-up-info-title-wrapper">
+                  <h2 class="movie-pop-up-info-title"></h2>
+                </div>
+
+                <div class="movie-pop-up-info-year-wrapper">
+                  <span class="label">Año: </span>
+                  <p class="movie-pop-up-info-year"></p>
+                </div>
+
+                <div class="movie-pop-up-info-released-wrapper">
+                  <span class="label">Fecha de lanzamiento: </span>
+                  <p class="movie-pop-up-info-released"></p>
+                </div>
+
+                <div class="movie-pop-up-info-runtime-wrapper">
+                  <span class="label">Duración: </span>
+                  <p class="movie-pop-up-info-runtime"></p>
+                </div>
+
+                <div class="movie-pop-up-info-genre-wrapper">
+                  <span class="label">Género: </span>
+                  <p class="movie-pop-up-info-genre"></p>
+                </div>
+
+                <div class="movie-pop-up-info-director-wrapper">
+                  <span class="label">Director: </span>
+                  <p class="movie-pop-up-info-director"></p>
+                </div>
+
+                <div class="movie-pop-up-info-writer-wrapper">
+                  <span class="label">Escritor(es): </span>
+                  <p class="movie-pop-up-info-writer"></p>
+                </div>
+
+                <div class="movie-pop-up-info-actors-wrapper">
+                  <span class="label">Actores: </span>
+                  <p class="movie-pop-up-info-actors"></p>
+                </div>
+
+                <div class="movie-pop-up-info-language-wrapper">
+                  <span class="label">Lenguaje: </span>
+                  <p class="movie-pop-up-info-language"></p>
+                </div>
+
+                <div class="movie-pop-up-info-plot-wrapper">
+                  <span class="label">Descripción: </span>
+                  <p class="movie-pop-up-info-plot"></p>
+                </div>
+
+                <div class="movie-pop-up-info-metascore-wrapper">
+                  <span class="label">Calificación: </span>
+                  <p class="movie-pop-up-info-metascore"></p>
+                </div>
+
+                <div class="movie-pop-up-info-type-wrapper">
+                  <span class="label">Tipo: </span>
+                  <p class="movie-pop-up-info-type"></p>
+                </div>
+
+                <div class="movie-pop-up-info-btn-wrapper">
+                  <button
+                    class="btn-primary movie-pop-up-info-btn"
+                    type="button"
+                  >
+                    <span>Agregar a carrito</span>
+                    <div class="icon-added">
+                      <svg
+                        version="1.1"
+                        id="Capa_1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px"
+                        y="0px"
+                        width="45.701px"
+                        height="45.7px"
+                        viewBox="0 0 45.701 45.7"
+                        style="enable-background: new 0 0 45.701 45.7"
+                        xml:space="preserve"
+                      >
+                        <path
+                          d="M20.687,38.332c-2.072,2.072-5.434,2.072-7.505,0L1.554,26.704c-2.072-2.071-2.072-5.433,0-7.504 c2.071-2.072,5.433-2.072,7.505,0l6.928,6.927c0.523,0.522,1.372,0.522,1.896,0L36.642,7.368c2.071-2.072,5.433-2.072,7.505,0 c0.995,0.995,1.554,2.345,1.554,3.752c0,1.407-0.559,2.757-1.554,3.752L20.687,38.332z"
+                        />
+                      </svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="template-message-error">
+      <div class="message-error-wrapper">
+        <p class="message-error-text"></p>
+      </div>
+    </template>
+
+    <template id="template-cart-item">
+      <div class="cart-item">
+        <div class="cart-item-image-wrapper">
+          <img loading="lazy" class="cart-item-image" src="" alt="" />
+        </div>
+
+        <div class="cart-item-info">
+          <h2 class="cart-item-info-title"></h2>
+
+          <div class="cart-item-info-quantity">
+            <div class="cart-item-info-quantity-controls">
+              <span class="cart-item-info-quantity-minus">–</span>
+              <input
+                type="number"
+                name="quantity"
+                value=""
+                min="0"
+                class="cart-item-info-quantity-input"
+                pattern="[0-9]*"
+              />
+              <span class="cart-item-info-quantity-plus">+</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cart-item-btn-delete" data-delete-item-cart>
+          <img
+            loading="lazy"
+            src="./assets/icon-close-minicart.svg"
+            alt="icon-delete"
+          />
+        </div>
+      </div>
+    </template>
+
+    <template id="template-loader">
+      <div class="sk-chase loader-component">
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+      </div>
+    </template>
+    <!-- / Templates Skeletons -->
+
+    <script src="./index.js" defer="defer"></script>
+  </body>
+</html>
