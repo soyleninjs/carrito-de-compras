@@ -1,8 +1,8 @@
 // Api para el buscador
-// http://www.omdbapi.com/?apikey=373e9458&s=guardians
+// https://www.omdbapi.com/?apikey=373e9458&s=guardians
 
 // Api para un item concreto
-// http://www.omdbapi.com/?apikey=373e9458&i=tt2015381
+// https://www.omdbapi.com/?apikey=373e9458&i=tt2015381
 
 /* ============================================================================
   Variables
@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
   configFormSearch();
   configCartSystem();
   updateCartCount();
-  getDataSearch("iron man", 1);
 });
 
 /* ============================================================================
@@ -71,7 +70,7 @@ const updateCartItems = () => {
 const getDataSearch = async (title, showPage) => {
   search = title?.trim().replace(" ", "+").toLowerCase() ?? "Iron+man";
   const result = await window.fetch(
-    `http://www.omdbapi.com/?apikey=${apiKey}&s=${search}&page=${showPage}`
+    `https://www.omdbapi.com/?apikey=${apiKey}&s=${search}&page=${showPage}`
   );
 
   if (result.status === 200) {
@@ -86,7 +85,7 @@ const getDataSearch = async (title, showPage) => {
 // function called fo get movie data pop up
 const getDataMovie = async (idMovie) => {
   const result = await window.fetch(
-    `http://www.omdbapi.com/?apikey=${apiKey}&i=${idMovie}`
+    `https://www.omdbapi.com/?apikey=${apiKey}&i=${idMovie}`
   );
 
   if (result.status === 200) {
